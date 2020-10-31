@@ -170,3 +170,35 @@ def send_mail():
 
 
 check_price()
+
+
+class TokopediaData:
+    def __init__(self, productId=None, title=None, description=None, price=0):
+        self.id = productId
+        self.title = title
+        self.description = description
+        self.price = price
+
+    def display(self):
+        print(f"ProductID: {self.id}")
+        print(f"Title: {self.title}")
+        print(f"Description: {self.description}")
+        print(f"Price: {self.price}")
+
+    def toList(self):
+        data = [
+            self.id,
+            self.title,
+            self.description,
+            self.price
+        ]
+        return data
+
+    def toDict(self):
+        data_dict = {
+            'id': self.id,
+            'title': self.title,
+            'description': self.description,
+            'price': self.price
+        }
+        return data_dict
