@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import smtplib
+from tokopedia import TokopediaScraper
 
 URL = 'INSERT_URL_YANG_MAU_DISCRAPPING'
 
@@ -22,6 +23,13 @@ class TokopediaScraper(Scraper):
         """Get Data by Class Name
         """
         data = content.find(attrs={'class': name})
+        if __name__ == '__main__':
+        ts = TokopediaScraper(debug=False)
+        default_urls = ts.getListUrl(offset=0, limit=10)
+        ts.setListUrl(default_urls)
+        ts.run()
+        ts.saveData()
+
         if as_text and data:
             return data.text.strip()
         return data
@@ -77,7 +85,7 @@ class TokopediaScraper(Scraper):
             for product in products:
                 product_url = product.get('url')
                 if product_url:
-                    cleaned_url = product_url.split('?')[0]
+                    cleaned_url = product_url.split('?')[1]
                     urls.append(cleaned_url)
         return urls
 
